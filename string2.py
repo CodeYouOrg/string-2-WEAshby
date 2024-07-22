@@ -9,12 +9,11 @@
 # Return the resulting string.
 
 def verbing(s):
-    length = len(s)
-    if length > 2:
-      if s[-3:] == 'ing':
-          s += 'ly'
-      else:
-          s += "ing"
+    if len(s) >= 3:
+        if s[-3:] == 'ing':
+            s = s + 'ly'
+        elif s[:-3] != 'ing':
+            s = s + 'ing'
     return s
 
 
@@ -45,17 +44,22 @@ def not_bad(s):
 #  a-front + b-front + a-back + b-back
 
 def front_back(a, b):
-    print (a, b)
-    a_indx = int((len(a)+1)/2)
-    b_indx = int((len(b)+1)/2)
+    alength = len(a)
+    blength = len(b)
+    if alength % 2 == 0:
+      aindex = alength // 2
+    else:
+      aindex = (alength // 2) + 1
+    if blength % 2 == 0:
+      bindex = blength // 2
+    else:
+      bindex = (blength // 2) + 1
+    afront = a[0:aindex]
+    aback = a[aindex:]
+    bfront = b[0:bindex] 
+    bback = b[bindex:]
+    return afront + bfront + aback + bback
 
-    print (a[:a_indx] + b[:b_indx] + a[a_indx:] +b[b_indx:])
-    print ("\n")
-
-front_back("ab", "cd")
-front_back("abc", "de")
-front_back("ab", "cde")
-front_back("abc", "def")
 
 
 
